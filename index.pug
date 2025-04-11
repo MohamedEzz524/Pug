@@ -1,0 +1,70 @@
+include includes/myVars.pug
+include includes/mixin.pug
+doctype html
+//- unCompiled Comment
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name ="description", content="Learn PugJs")
+        block PageTitle
+            title  My Resume
+        include includes/styles.pug
+    body 
+        div(class = "main-container", id ="main")
+            +feature("Changeable Div By Mixin")
+            h2(class ="main-title") My Skills
+            // Start My Skills
+            ul(class="Skill-list")
+                li PHP #{themeName.toUpperCase()}
+                li MySQL  #{themeTag} 
+                li Sass   !{themeTag} 
+                li Pugjs  #{'}'}! And #{'#{Ahmed}'} 
+            +skillList
+            //Iteration
+            ul
+                - for (var x =0; x<=5; x++)
+                    li Item #{x}
+
+                - var z = 0
+                ul 
+                    while z < 5
+                        li= z++
+            // Each Loop
+            - var myArray = ["Html","Css","JS","PHP","TypeScript"]
+            each val,index in myArray
+                div= index +": " + val
+            else
+                div There No Value         
+            // UnBuffered Code
+            div(class="parent") Parent Div
+                div(class="child "+ themeName) Child Div
+            // Esc Buffered Code
+            div="This <strong>Tag</strong> Will Not Appear"
+            // UnEscaped Buffered Code
+            div!="This <strong>Tag</strong> Will Not Appear"
+            p#main-paragraph I Love <b>PugJs</b> And <b>Sass</b>
+            p.inter This Is Interpolation #[b Test] Text 
+            p.main-paragraph
+                | I Love 
+                b PugJs
+                |  And 
+                b Sass
+            |
+            |
+            .   
+                This Text Belong To Div
+            //Write 2 or 3 Tags In Same Level
+            div: a This Is Link
+            div: a: img 
+        form
+            h2.contact-title Contact Me!
+            input(class="f-c", type="text", name="user")
+            input(class="f-c", type="email", name="email")
+            input(
+                class="f-c", 
+                type="text", 
+                name="subject"
+            )
+            button(style = "background-color:green; color:white") Send
+            button(style = {"background-color":"red", "color":"white"}) Reset
+        include includes/scripts.pug
